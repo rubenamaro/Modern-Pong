@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Tecnologies i Eines pel desenvolupament Web - PRA2 : Instruccions</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<header id="header">
+		<nav id="nav">
+			<ul>
+				<li class="button green"><a class="light" href="index.html">Inici</a></li>
+				<li class="button green"><a class="light" href="instruccions.html">Instruccions</a></li>
+				<li class="button green"><a class="light" href="canvas.html">Canvas</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<section class="section"> 
+		<article class="instruccions">
+			<div id="video">
+				<h3>Explicació en video</h1>
+				<video width="320" height="240" controls>
+				  <source src="video/chrome.mp4" type="video/mp4">
+				  <source src="video/chrome.ogg" type="video/ogg">
+				  <source src="video/chrome.webm" type="video/webm">
+				  Your browser does not support the video tag.
+				</video>
+			</div>
+			<div id="audio">
+				<h3>Explicació en audio</h1>
+				<audio controls>
+				  <source src="audio/test.mp3" type="audio/mpeg">
+				  Your browser does not support the audio tag.
+				</audio>
+			</div>
+		</article>
+	</section>
+
+	<footer id="footer">
+		<p>UOC - Tecnologies i eines pel desenvolupament web - PRA2</p>
+	</footer>
+	<script>
+		$.getJSON('src/user_info.php', function(data){
+			data.forEach(function(entry) {
+				$('#users_online').append('<div id="usuari'+entry.id+'" class="usuari"></div>');
+				$('#usuari'+entry.id).html('<div class="cara" id="cara'+entry.id+'"><img class="imatgePerfil" src="'+entry.img+'"/></div>');
+				$('#usuari'+entry.id).append('<div class="dades" id="dades'+entry.id+'"></div>');
+				$('#dades'+entry.id).append('<div class="nom" id="nom'+entry.id+'">'+entry.name+'</div><div class="puntuacio" id="puntuacio'+entry.id+'">'+entry.points+'</div>');
+				$('#dades'+entry.id).append('<div class="descripcio" id="descripcio'+entry.id+'">'+entry.descr+'</div>');
+			});
+		});
+	</script>
+</body>
+
+</html>
+

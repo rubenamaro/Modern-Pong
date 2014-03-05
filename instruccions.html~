@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Tecnologies i Eines pel desenvolupament Web - PRA2 : Instruccions</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+</head>
+<body>
+	<div id="header">
+		<div id="nav">
+			<ul>
+				<li><a href="index.html">Inici</a></li>
+				<li><a href="instruccions.html">Instruccions</a></li>
+				<li><a href="canvas.html">Canvas</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="section"> 
+		<div class="article">
+			Insereix aquí les etiquetes HTML que creguis necessàries...
+		</div>
+
+		<div id="aside">
+
+			<div id="actions">
+				<h2>Accions</h2> 
+				<button id="new_game">Nova partida</button><br /> <br />
+			<button id="get_users">Obtenir usuaris en línia</button><br />
+			</div>
+			
+			<h2>Usuaris en línia</h2>
+			<div id="users_online"> </div>
+							
+		</div>
+	</div>
+
+	<div id="footer">
+		<p>UOC - Tecnologies i eines pel desenvolupament web - PRA2</p>
+	</div>
+
+</body>
+
+</html>
+

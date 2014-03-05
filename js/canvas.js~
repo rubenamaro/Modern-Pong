@@ -1,0 +1,135 @@
+	// Actualitzem la posició del paddle en funció de la tecla UP o DOWN que premi el jugador.
+	$(document).keydown(function(e){
+
+		// 38 => KeyUP
+		if (e.keyCode == 38 ){
+			paddleY -= 10;
+		}
+
+		// 40 => KeyDown
+		if (e.keyCode == 40 ){
+			paddleY += 10 ;
+			
+		}
+
+	});
+
+	// Variables per a definir el Canvas.
+	var canvas;  
+	var ctx;
+
+	// Posicio de la pilota
+	var x = 400;
+	var y = 300;
+
+	// Velicitat de deslaçament de la pilota
+	var dx = 2;
+	var dy = 4;
+
+	// Tamany del canvas
+	var WIDTH = 400;
+	var HEIGHT = 300; 
+	
+	var paddleX = 10;
+	var paddleY = 20;
+	var paddleWidth = 20;
+	var paddleHeight = 40;
+
+	var continua = true;
+
+	var data_inicial;
+
+	function update_counter(){
+		//global data_inicial; 
+		var stop_data = (new Date).getTime();
+		//alert ( ( stop_data - data_inicial ) / 1000 );
+		//$("#counter").value( ( stop_data - data_inicial ) / 1000  );	
+		$("#counter").val( ( stop_data - data_inicial ) / 1000 );
+	
+	}
+
+	// Dibuixem el cercle
+	function circle(x,y,r) {
+		ctx.beginPath();
+		ctx.arc(x, y, r, 0, Math.PI*2, true);
+		ctx.fill();
+	}
+
+
+	// Estic buit. Has de completar la paleta encarregada de dibuxar la pilota.
+	function paddle( x, y, w, h ){
+	
+		ctx.beginPath();
+		ctx.rect(x, y, w, h);
+		
+		ctx.closePath();
+		ctx.fill();
+	}
+
+
+	// Dibuixem el contenidor del Joc.
+	function rect(x,y,w,h) {
+		ctx.beginPath();
+		ctx.rect(x,y,w,h);
+		ctx.closePath();
+		ctx.fill();
+	}
+
+
+
+	//I clear the canvas before to draw it again.
+	function clear() {
+		ctx.clearRect(0, 0, WIDTH, HEIGHT);
+	}
+
+	function init() {
+		canvas = document.getElementById("canvas");
+		ctx = canvas.getContext("2d");
+		return setInterval(draw, 10);
+	}
+
+
+	function draw() {
+		
+		clear();
+
+		update_counter();
+		ctx.fillStyle = "#FAF7F8";
+		rect(0,0,WIDTH,HEIGHT);
+
+		ctx.fillStyle = "#444444";
+		circle(x, y, 10);
+
+
+		ctx.fillStyle = "#0000ff";
+		paddle(paddleX, paddleY, paddleWidth, paddleHeight);
+
+
+		if ( continua == true ){
+			if (x + dx > WIDTH || x + dx < 0){
+				dx = -dx;
+			}
+			if (y + dy > HEIGHT || y + dy < 0){
+				dy = -dy;
+			}
+
+			x += dx;
+			y += dy;
+		}
+	}
+
+	$( document ).ready(function() {
+
+		data_inicial = (new Date).getTime();
+		
+
+		$('#stop').click( function(){
+			continua = false;
+			
+		});
+
+	});
+
+
+	// Inicialitzem el joc.
+	init();

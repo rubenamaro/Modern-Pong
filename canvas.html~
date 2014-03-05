@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Tecnologies i Eines pel desenvolupament Web - PRA2</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  </head>
+<body>
+
+	<div id="header">
+		<div id="nav">
+			<ul>
+				<li><a href="index.html">Inici</a></li>
+				<li><a href="instruccions.html">Instruccions</a></li>
+				<li><a href="canvas.html">Canvas</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="article">
+			<div>
+				<canvas id="canvas" width="400" height="300">
+				 This text is displayed if your browser 
+				 does not support HTML5 Canvas.
+				</canvas>
+			</div>
+
+	<script type="text/javascript">
+
+	// Actualitzem la posició del paddle en funció de la tecla UP o DOWN que premi el jugador.
+	$(document).keydown(function(e){
+
+		// 38 => KeyUP
+		if (e.keyCode == 38 ){
+			paddleY -= 10;
+		}
+
+		// 40 => KeyDown
+		if (e.keyCode == 40 ){
+			paddleY += 10 ;
+			
+		}
+
+	});
+
+	// Variables per a definir el Canvas.
+	var canvas;  
+	var ctx;
+
+	// Posicio de la pilota
+	var x = 400;
+	var y = 300;
+
+	// Velicitat de deslaçament de la pilota
+	var dx = 2;
+	var dy = 4;
+
+	// Tamany del canvas
+	var WIDTH = 400;
+	var HEIGHT = 300; 
+	
+	var paddleX = 10;
+	var paddleY = 20;
+	var paddleWidth = 20;
+	var paddleHeight = 40;
+
+
+
+	// Dibuixem el cercle
+	function circle(x,y,r) {
+		ctx.beginPath();
+		ctx.arc(x, y, r, 0, Math.PI*2, true);
+		ctx.fill();
+	}
+
+
+	// Estic buit. Has de completar la paleta encarregada de dibuxar la pilota.
+	function paddle( x, y, w, h ){
+	
+	}
+
+
+	// Dibuixem el contenidor del Joc.
+	function rect(x,y,w,h) {
+		ctx.beginPath();
+		ctx.rect(x,y,w,h);
+		ctx.closePath();
+		ctx.fill();
+	}
+
+
+
+	//I clear the canvas before to draw it again.
+	function clear() {
+		ctx.clearRect(0, 0, WIDTH, HEIGHT);
+	}
+
+	function init() {
+		canvas = document.getElementById("canvas");
+		ctx = canvas.getContext("2d");
+		return setInterval(draw, 10);
+	}
+
+
+	function draw() {
+		
+		clear();
+
+		ctx.fillStyle = "#FAF7F8";
+		rect(0,0,WIDTH,HEIGHT);
+
+		ctx.fillStyle = "#444444";
+		circle(x, y, 10);
+
+
+		//ctx.fillStyle = "#0000ff";
+		//paddle(XX, XX, XX, XX);
+
+
+		if (x + dx > WIDTH || x + dx < 0){
+			dx = -dx;
+		}
+		if (y + dy > HEIGHT || y + dy < 0){
+			dy = -dy;
+		}
+
+		x += dx;
+		y += dy;
+
+	}
+
+
+	// Inicialitzem el joc.
+	init();
+	</script>
+
+			
+		</div>
+
+
+		<div id="aside">
+
+			<div id="actions">
+				<h2>Accions</h2> 
+				<button id="start" class="action-button">Start</button>
+				<button id="stop" class="action-button" >Stop</button>
+
+			</div>
+
+			<div>
+				<h2>Puntació actual</h2>
+				<input id="counter" value="0" />
+			</div>
+
+
+		
+			<h2>Usuaris en línia</h2>
+			<div id="users_online"> 
+				...
+			</div>
+					
+		</div>
+
+
+	</div>
+
+</body>
+</html>
